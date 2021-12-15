@@ -1,0 +1,1 @@
+web: java -war target/investment-web-1.0.war

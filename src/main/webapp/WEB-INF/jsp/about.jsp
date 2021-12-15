@@ -33,7 +33,6 @@
                                     <li>Фреймворк Spring Boot</li>
                                     <li>Авторизация и аутентификация Spring Security</li>
                                     <li>Среда разработки Intellij IDEA</li>
-                                    <li>Деплой Heroku, Tomcat</li>
                                     <li>Сборка Maven</li>
                                 </ul>
                             </div>
