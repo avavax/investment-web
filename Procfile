@@ -1,1 +1,1 @@
-web: java -war target/investment-web-1.0.war
+web: java -jar target/investment-web-1.0.jar

@@ -9,6 +9,6 @@ public interface UserService {
     List<User> getAllUsers();
     User getUserById(Integer id);
     void save(User user);
-    public void softDelete(Integer id);
+    void softDelete(Integer id);
     Optional<User> getUserByLogin(String email);
 }

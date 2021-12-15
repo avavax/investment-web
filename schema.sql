@@ -11,18 +11,18 @@ INSERT INTO country (name) VALUES ('Япония');
 
 CREATE TABLE sector (
      id SERIAL PRIMARY KEY,
-     name VARCHAR(32)
+     title VARCHAR(32)
 );
 
-INSERT INTO sector (name) VALUES ('Нефтегаз');
-INSERT INTO sector (name) VALUES ('Финансы');
-INSERT INTO sector (name) VALUES ('IT');
-INSERT INTO sector (name) VALUES ('Металлургия');
-INSERT INTO sector (name) VALUES ('Добыча');
-INSERT INTO sector (name) VALUES ('Строительство');
-INSERT INTO sector (name) VALUES ('Ритейл');
-INSERT INTO sector (name) VALUES ('Сельское хозяйство');
-INSERT INTO sector (name) VALUES ('Машиностроение');
+INSERT INTO sector (title) VALUES ('Нефтегаз');
+INSERT INTO sector (title) VALUES ('Финансы');
+INSERT INTO sector (title) VALUES ('IT');
+INSERT INTO sector (title) VALUES ('Металлургия');
+INSERT INTO sector (title) VALUES ('Добыча');
+INSERT INTO sector (title) VALUES ('Строительство');
+INSERT INTO sector (title) VALUES ('Ритейл');
+INSERT INTO sector (title) VALUES ('Сельское хозяйство');
+INSERT INTO sector (title) VALUES ('Машиностроение');
 
 CREATE TABLE user (
   id SERIAL PRIMARY KEY,

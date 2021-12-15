@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findOneByLogin(email);
     }
 
+    @Override
     public void softDelete(Integer id) {
         userRepository.softDelete(id);
     }
