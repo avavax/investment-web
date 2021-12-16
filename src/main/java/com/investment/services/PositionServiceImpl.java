@@ -11,14 +11,27 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс сервиса для работы с позициями портфеля (Position)
+ * @author Илья Петров
+ * @version 1.0
+ */
 @Component
 public class PositionServiceImpl implements PositionService {
-    
+
+    /** Константа, показывающая число знаков после запятой при округлении double-типов */
     private static final int ROUND_PARAM = 100;
 
+    /** Сервис для работы с ценами */
     @Autowired
     private PriceService priceService;
 
+    /**
+     * Метод возвращает список позиций на основе списка ценных бумаг
+     * @param paperList список ценных бумаг
+     * @param <T> - принимаемый тип (Bond или Stock), наследники Paper
+     * @return - список позиций
+     */
     public <T extends Paper> List<Position<T>> getListPosition(List<T> paperList) {
         double sum = 0.0;
         List<Position<T>> positions = new ArrayList<>();
@@ -33,9 +46,14 @@ public class PositionServiceImpl implements PositionService {
         return positions;
     }
 
+    /**
+     * Метод возвращает одну позицию на основе одной ценной бумаги
+     * @param paper - ценная бумага
+     * @param <T> - принимаемый тип (Bond или Stock), наследники Paper
+     * @return - позиция
+     */
     private <T extends Paper> Position<T> getOnePosition(T paper) {
         String symbol = paper.getSymbol();
-        //double currentPrice = getCurrentPrice(symbol);
         double currentPrice = getPrettifyNumberView(priceService.getPaperPrice(symbol));
         if (currentPrice == 0.0) {
             currentPrice = paper.getPrice();
@@ -50,10 +68,11 @@ public class PositionServiceImpl implements PositionService {
         return new Position<>(paper, currentPrice, value, diffCost, diffPercent, share);
     }
 
-    private static double getCurrentPrice(String symbol) {
-        return 400.0;
-    }
-    
+    /**
+     * Метод для округления double-числа до ROUND_PARAM знаков после запятой
+     * @param num - входное число
+     * @return - округлённое число
+     */
     private static double getPrettifyNumberView(Double num) {
         return Math.round(num * ROUND_PARAM) / ROUND_PARAM;
     }

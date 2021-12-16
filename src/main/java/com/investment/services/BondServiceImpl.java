@@ -11,18 +11,33 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Класс сервиса для работы с облигациями (Bond)
+ * @author Илья Петров
+ * @version 1.0
+ */
 @Component
 public class BondServiceImpl implements BondService {
 
     private BondRepository bondRepository;
     private CountryService countryService;
 
+    /**
+     * Конструктор объекта
+     * @param bondRepository - репозиторий облигаций
+     * @param countryService - сервис для работы со странами
+     */
     @Autowired
     public BondServiceImpl(BondRepository bondRepository, CountryService countryService) {
         this.bondRepository = bondRepository;
         this.countryService = countryService;
     }
 
+    /**
+     * Метод добавления облигации
+     * @param bondForm форма ввода данных об облигации
+     * @param userId id пользователя-владельца
+     */
     @Override
     public void add(BondForm bondForm, Integer userId) {
         Country country = countryService.getCountryById(bondForm.getCountry());
@@ -41,6 +56,11 @@ public class BondServiceImpl implements BondService {
         bondRepository.save(bond);
     }
 
+    /**
+     * Метод обновления облигации
+     * @param bondForm форма ввода данных об облигации
+     * @param bond текущая облигация, в которой обновляются данные
+     */
     @Override
     public void update(BondForm bondForm, Bond bond) {
         Country country = countryService.getCountryById(bondForm.getCountry());
@@ -58,16 +78,30 @@ public class BondServiceImpl implements BondService {
         bondRepository.save(bond);
     }
 
+    /**
+     * Метод удаления облигации
+     * @param id облигации для удаления
+     */
     @Override
     public void delete(Integer id) {
         bondRepository.deleteById(id);
     }
 
+    /**
+     * Методо получения облигации по id
+     * @param id облигации, которую запрашивают
+     * @return возвращаем облигацию или выбрасываем 404-ошибку
+     */
     @Override
     public Bond getById(Integer id) {
         return bondRepository.findById(id).orElseThrow(PageNotFoundException::new);
     }
 
+    /**
+     * Метод получения списка облигаций данного пользователя
+     * @param userId пользователь, все облигации которого запрашивают
+     * @return список облигация данного пользователя
+     */
     @Override
     public List<Bond> findAllByUserId(Integer userId) {
         return bondRepository.findAllByUserId(userId);

@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Класс сервиса для работы с акциями (Stock)
+ * @author Илья Петров
+ * @version 1.0
+ */
 @Component
 public class StockServiceImpl implements StockService {
 
@@ -19,6 +24,12 @@ public class StockServiceImpl implements StockService {
     private CountryService countryService;
     private SectorService sectorService;
 
+    /**
+     * Конструктор объекта
+     * @param stockRepository - репозиторий акций
+     * @param sectorService - репозиторий отраслей
+     * @param countryService - сервис для работы со странами
+     */
     @Autowired
     public StockServiceImpl(StockRepository stockRepository, CountryService countryService, SectorService sectorService) {
         this.stockRepository = stockRepository;
@@ -26,6 +37,11 @@ public class StockServiceImpl implements StockService {
         this.sectorService = sectorService;
     }
 
+    /**
+     * Метод добавления акции
+     * @param stockForm форма ввода данных об акции
+     * @param userId id пользователя-владельца
+     */
     @Override
     public void add(StockForm stockForm, Integer userId) {
         Country country = countryService.getCountryById(stockForm.getCountry());
@@ -42,6 +58,11 @@ public class StockServiceImpl implements StockService {
         stockRepository.save(stock);
     }
 
+    /**
+     * Метод обновления акции
+     * @param stockForm форма ввода данных об акции
+     * @param stock текущая акция, в которой обновляются данные
+     */
     @Override
     public void update(StockForm stockForm, Stock stock) {
         Country country = countryService.getCountryById(stockForm.getCountry());
@@ -57,16 +78,30 @@ public class StockServiceImpl implements StockService {
         stockRepository.save(stock);
     }
 
+    /**
+     * Метод удаления акции
+     * @param id акции для удаления
+     */
     @Override
     public void delete(Integer id) {
         stockRepository.deleteById(id);
     }
 
+    /**
+     * Методо получения акции по id
+     * @param id акции, которую запрашивают
+     * @return возвращаем акцию или выбрасываем 404-ошибку
+     */
     @Override
     public Stock getById(Integer id) {
         return stockRepository.findById(id).orElseThrow(PageNotFoundException::new);
     }
 
+    /**
+     * Метод получения списка акций данного пользователя
+     * @param userId пользователь, все акции которого запрашивают
+     * @return список акций данного пользователя
+     */
     @Override
     public List<Stock> findAllByUserId(Integer userId) {
         return stockRepository.findAllByUserId(userId);

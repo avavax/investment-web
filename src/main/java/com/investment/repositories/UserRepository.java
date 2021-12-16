@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM account id WHERE visible = 1 ORDER BY id")
     List<User> findAllVisible();
 
-    @Query(nativeQuery = true, value = "UPDATE account SET visible = 0 WHERE id = 1")
+    @Query(nativeQuery = true, value = "UPDATE account SET visible = 0 WHERE id = ?1")
     void softDelete(Integer id);
 }
 

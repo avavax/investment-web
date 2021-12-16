@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -66,13 +67,12 @@ public class PortfolioController {
                         @PathVariable("user-id") Integer userId,
                         Principal principal) {
         User user = userService.getUserById(userId);
-        if (user == null) {
-            return "404";
-        }
+
         if (userSecurity.hasAdminOrOwner(principal, user)) {
             model.addAttribute("isAdminOrOwner", true);
             model.addAttribute("currentPage", "myPortfolio");
         }
+
         List<Stock> stocks = stockService.findAllByUserId(userId);
         List<Bond> bonds = bondService.findAllByUserId(userId);
         List<Position<Stock>> stockPositions = positionService.getListPosition(stocks);
