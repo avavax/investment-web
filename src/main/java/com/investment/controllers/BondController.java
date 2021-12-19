@@ -100,7 +100,7 @@ public class BondController {
     }
 
     @PostMapping("/bonds/{user-id}")
-    public String update(@Valid BondForm bondForm,
+    public String add(@Valid BondForm bondForm,
                          BindingResult result,
                          RedirectAttributes forRedirectModel,
                          @PathVariable("user-id") Integer userId,

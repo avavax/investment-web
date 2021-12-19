@@ -20,12 +20,10 @@ import javax.validation.Valid;
 public class UserController {
 
     private UserService userService;
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -55,14 +53,7 @@ public class UserController {
             forRedirectModel.addFlashAttribute("errors", "Пароли должны совпадать!");
             return "redirect:/register";
         }
-        User user = User.builder()
-                .name(userForm.getName())
-                .email(userForm.getEmail())
-                .password(passwordEncoder.encode(userForm.getPassword()))
-                .role(User.Role.USER)
-                .visible(1)
-                .build();
-        userService.save(user);
+        userService.save(userForm);
         return "redirect:/login";
     }
 

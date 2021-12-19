@@ -19,6 +19,6 @@ public class Sector {
     private Integer id;
     private String title;
 
-    @OneToMany(mappedBy = "sector", fetch = FetchType.EAGER)
-    private List<Stock> stocks;
+    /*@OneToMany(mappedBy = "sector", fetch = FetchType.EAGER)
+    private List<Stock> stocks;*/
 }

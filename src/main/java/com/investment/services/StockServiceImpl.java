@@ -1,5 +1,6 @@
 package com.investment.services;
 
+import com.investment.exceptions.DatabaseQueryError;
 import com.investment.exceptions.PageNotFoundException;
 import com.investment.forms.StockForm;
 import com.investment.models.Country;
@@ -84,7 +85,11 @@ public class StockServiceImpl implements StockService {
      */
     @Override
     public void delete(Integer id) {
-        stockRepository.deleteById(id);
+        try {
+            stockRepository.deleteById(id);
+        } catch(RuntimeException e) {
+            throw new DatabaseQueryError();
+        }
     }
 
     /**
@@ -104,6 +109,10 @@ public class StockServiceImpl implements StockService {
      */
     @Override
     public List<Stock> findAllByUserId(Integer userId) {
-        return stockRepository.findAllByUserId(userId);
+        try {
+            return stockRepository.findAllByUserId(userId);
+        } catch(RuntimeException e) {
+            throw new DatabaseQueryError();
+        }
     }
 }

@@ -12,5 +12,8 @@ public class ErrorPageConfig implements ErrorPageRegistrar {
     public void registerErrorPages(ErrorPageRegistry registry) {
         ErrorPage page404 = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404");
         registry.addErrorPages(page404);
+
+        ErrorPage page500 = new ErrorPage(HttpStatus.BAD_REQUEST, "/error/500");
+        registry.addErrorPages(page500);
     }
 }

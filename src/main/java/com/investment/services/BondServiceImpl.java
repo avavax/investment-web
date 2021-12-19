@@ -1,5 +1,6 @@
 package com.investment.services;
 
+import com.investment.exceptions.DatabaseQueryError;
 import com.investment.exceptions.PageNotFoundException;
 import com.investment.forms.BondForm;
 import com.investment.models.Bond;
@@ -8,6 +9,7 @@ import com.investment.repositories.BondRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,7 +86,11 @@ public class BondServiceImpl implements BondService {
      */
     @Override
     public void delete(Integer id) {
-        bondRepository.deleteById(id);
+        try {
+            bondRepository.deleteById(id);
+        } catch(RuntimeException e) {
+            throw new DatabaseQueryError();
+        }
     }
 
     /**
@@ -104,6 +110,10 @@ public class BondServiceImpl implements BondService {
      */
     @Override
     public List<Bond> findAllByUserId(Integer userId) {
-        return bondRepository.findAllByUserId(userId);
+        try {
+            return bondRepository.findAllByUserId(userId);
+        } catch(RuntimeException e) {
+            throw new DatabaseQueryError();
+        }
     }
 }

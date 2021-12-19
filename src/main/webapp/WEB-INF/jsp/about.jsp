@@ -23,6 +23,7 @@
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Работа с БД</a>
                             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Фронтенд и шаблонизаторы</a>
                             <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Внешние API</a>
+                            <a class="list-group-item list-group-item-action" id="list-test-list" data-toggle="list" href="#list-test" role="tab" aria-controls="test">Тестирование</a>
                         </div>
                     </div>
                     <div class="col-8">
@@ -34,6 +35,7 @@
                                     <li>Авторизация и аутентификация Spring Security</li>
                                     <li>Среда разработки Intellij IDEA</li>
                                     <li>Сборка Maven</li>
+                                    <li>Деплой Heroku</li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
@@ -55,6 +57,15 @@
                                 <ul>
                                     <li>API БКС - получение курса ценной бумаги</li>
                                     <li>API ЦБ РФ - получение курса рубля</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-test-list">
+                                <ul>
+                                    <li>Покрытие более 100 тестами</li>
+                                    <li>Для слоя models - JUnit5</li>
+                                    <li>Для слоя repositories - DataJpaTest + H2</li>
+                                    <li>Для слоя services - Mockito</li>
+                                    <li>Для слоя controller - WebMvcTest</li>
                                 </ul>
                             </div>
                         </div>

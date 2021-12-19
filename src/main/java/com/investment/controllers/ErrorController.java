@@ -9,5 +9,10 @@ public class ErrorController {
     public String get404Page() {
         return "404";
     }
+
+    @GetMapping("/error/500")
+    public String get500Page() {
+        return "500";
+    }
 }
 

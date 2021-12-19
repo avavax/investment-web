@@ -105,7 +105,7 @@ public class StockController {
     }
 
     @PostMapping("/stocks/{user-id}")
-    public String update(@Valid StockForm stockForm,
+    public String add(@Valid StockForm stockForm,
                          BindingResult result,
                          RedirectAttributes forRedirectModel,
                          @PathVariable("user-id") Integer userId,

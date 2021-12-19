@@ -19,8 +19,16 @@ import java.util.List;
 public class CountryServiceImpl implements CountryService {
 
     /** Поле репозитория стран */
+    private final CountryRepository countryRepository;
+
+    /**
+     * Конструктор метода
+     * @param countryRepository репозиторий стран
+     */
     @Autowired
-    private CountryRepository countryRepository;
+    public CountryServiceImpl(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+    }
 
     /**
      * Метод получения списка всех стран

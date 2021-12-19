@@ -4,7 +4,7 @@
 
 <main class="main-content position-relative">
     <div class="container">
-        <h1 class="text-center display-6 fw-bold position-absolute top-50 start-50 translate-middle">Добро пожаловать на страницу 404</h1>
+        <h1 class="text-center display-6 fw-bold position-absolute top-50 start-50 translate-middle">Неверный запрос или ошибка сервера</h1>
     </div>
 </main>
 

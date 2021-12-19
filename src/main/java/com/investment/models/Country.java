@@ -19,9 +19,9 @@ public class Country {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
+    /*@OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
     private List<Stock> stocks;
 
     @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
-    private List<Stock> bonds;
+    private List<Stock> bonds;*/
 }

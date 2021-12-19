@@ -1,5 +1,6 @@
 package com.investment.services;
 
+import com.investment.forms.UserForm;
 import com.investment.models.User;
 
 import java.util.List;
@@ -27,9 +28,9 @@ public interface UserService {
 
     /**
      * Метод сохранения пользователя в репозиторий
-     * @param user пользователь
+     * @param userForm форма с данными о пользователе
      */
-    void save(User user);
+    void save(UserForm userForm);
 
     /**
      * Метод для условного удаления пользователя

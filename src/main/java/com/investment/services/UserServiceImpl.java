@@ -1,11 +1,13 @@
 package com.investment.services;
 
 import com.investment.exceptions.PageNotFoundException;
+import com.investment.forms.UserForm;
 import com.investment.models.User;
 import com.investment.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,6 +24,10 @@ public class UserServiceImpl implements UserService {
     /** Поле репозитория пользователей */
     @Autowired
     UserRepository userRepository;
+
+    /** Поле энкодер для шифрования пароля */
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     /**
      * Метод получения всех пользователей
@@ -44,10 +50,17 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Метод сохраняет пользователя в БД
-     * @param user
+     * @param userForm форма с данными о пользователе
      */
     @Override
-    public void save(User user) {
+    public void save(UserForm userForm) {
+        User user = User.builder()
+                .name(userForm.getName())
+                .email(userForm.getEmail())
+                .password(passwordEncoder.encode(userForm.getPassword()))
+                .role(User.Role.USER)
+                .visible(1)
+                .build();
         userRepository.save(user);
     }
 
