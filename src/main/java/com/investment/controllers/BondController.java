@@ -83,8 +83,7 @@ public class BondController {
     @GetMapping("/bonds/{user-id}")
     public String getAddFormBond(Model model,
                                  @PathVariable("user-id") Integer userId,
-                                 Principal principal,
-                                 @AuthenticationPrincipal(expression = "user") User authUser) {
+                                 Principal principal) {
 
         if (!userSecurity.hasAdminOrOwner(principal, userId)) {
             return "login";

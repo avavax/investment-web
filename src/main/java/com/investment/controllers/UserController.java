@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{user-id}/delete")
-    public String getRegisterForm(@PathVariable("user-id") Integer userId) {
+    public String userDelete(@PathVariable("user-id") Integer userId) {
         User user = userService.getUserById(userId);
         if (user == null || user.getRole().equals(User.Role.ADMIN)) {
             return "redirect:/";

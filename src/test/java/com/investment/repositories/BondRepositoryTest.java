@@ -1,6 +1,7 @@
 package com.investment.repositories;
 
 import com.investment.models.Bond;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -24,18 +25,25 @@ class BondRepositoryTest {
     @Autowired
     private BondRepository bondRepository;
 
+    private Bond bond1;
+    private Bond bond2;
+    private Bond bond3;
+
+    @BeforeEach
+    void setUp() {
+        bond1 = Bond.builder().userId(1).build();
+        entityManager.persist(bond1);
+
+        bond2 = Bond.builder().userId(1).build();
+        entityManager.persist(bond2);
+
+        bond3 = Bond.builder().userId(2).build();
+        entityManager.persist(bond3);
+    }
+
     @Test
     @DisplayName("findAllByUserId() is working")
     void findAllByUserId() {
-        Bond bond1 = Bond.builder().userId(1).build();
-        entityManager.persist(bond1);
-
-        Bond bond2 = Bond.builder().userId(1).build();
-        entityManager.persist(bond2);
-
-        Bond bond3 = Bond.builder().userId(2).build();
-        entityManager.persist(bond3);
-
         List<Bond> bonds = bondRepository.findAllByUserId(1);
         assertTrue(bonds.contains(bond1));
         assertTrue(bonds.contains(bond2));
@@ -46,15 +54,6 @@ class BondRepositoryTest {
     @Test
     @DisplayName("findAll() is working")
     void findAll() {
-        Bond bond1 = Bond.builder().userId(1).build();
-        entityManager.persist(bond1);
-
-        Bond bond2 = Bond.builder().userId(1).build();
-        entityManager.persist(bond2);
-
-        Bond bond3 = Bond.builder().userId(2).build();
-        entityManager.persist(bond3);
-
         List<Bond> bonds = bondRepository.findAll();
         assertTrue(bonds.contains(bond1));
         assertTrue(bonds.contains(bond2));
