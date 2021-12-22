@@ -27,19 +27,38 @@
     - Деплой Heroku, Tomcat
     - Сборка Maven
     
+    
 * Работа с базой данных
     - Postgres
     - JDBC
     - ORM Hibernate
     - Spring Data JPA
+  
     
 * Фронтенд и шаблонизация
     - JSP
     - JSTL
     - Bootstrap
     
+    
 * Внешние API
     - API БКС - получение курса ценной бумаги
     - API ЦБ РФ - получение курса рубля
+
+
+* Покрытие тестами
+    - Для слоя models - JUnit5
+    - Для слоя repositories - DataJpaTest + H2
+    - Для слоя services - Mockito
+    - Для слоя controller - WebMvcTest
+    
+---
+
+Адрес приложение в сети - [investment-web](https://investment-web.herokuapp.com/)
+
+---
+
+![screenshot](screenshot.jpg)
+  
 
                  
